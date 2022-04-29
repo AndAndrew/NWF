@@ -17,11 +17,15 @@ class MainViewController: UIViewController {
         
         setupViews()
         setupConstraints()
+        presenter.showString()
     }
     
     private func setupViews() {
+        tabBarController?.tabBar.tintColor = .systemRed
+        
         label = UILabel()
         label.textAlignment = .center
+        label.textColor = .systemIndigo
         label.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
     }
