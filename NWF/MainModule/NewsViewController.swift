@@ -20,7 +20,6 @@ class NewsViewController: UIViewController {
         newsTable.dataSource = self
         newsTable.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         setupConstraints()
-        presenter.showString()
     }
     
     private func setupViews() {

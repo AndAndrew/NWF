@@ -12,21 +12,19 @@ protocol NewsViewProtocol {
 }
 
 protocol NewsViewPresenterProtocol {
-    init(view: NewsViewProtocol, item: Item)
+    init(view: NewsViewProtocol, news: News)
     func showString()
 }
 
 class NewsPresenter: NewsViewPresenterProtocol {
     let view: NewsViewProtocol
-    let item: Item
+    let news: News
     
-    required init(view: NewsViewProtocol, item: Item) {
+    required init(view: NewsViewProtocol, news: News) {
         self.view = view
-        self.item = item
+        self.news = news
     }
     
     func showString() {
-        let string = self.item.name
-        self.view.setString(string: string)
     }
 }

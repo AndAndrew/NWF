@@ -13,10 +13,10 @@ protocol Builder {
 
 class ModuleBuilder: Builder {
     static func createNewsModule() -> UIViewController {
-        let model = Item(name: "Hello!")
+//        let model = News()
         let view = NewsViewController()
-        let presenter = NewsPresenter(view: view, item: model)
-        view.presenter = presenter
+//        let presenter = NewsPresenter(view: view, news: model)
+//        view.presenter = presenter
         return view
     }
     
