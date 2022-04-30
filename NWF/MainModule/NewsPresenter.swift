@@ -1,5 +1,5 @@
 //
-//  MainPresenter.swift
+//  NewsPresenter.swift
 //  NWF
 //
 //  Created by Andrey Krivokhizhin on 29.04.2022.
@@ -7,20 +7,20 @@
 
 import Foundation
 
-protocol MainViewProtocol {
+protocol NewsViewProtocol {
     func setString(string: String)
 }
 
-protocol MainViewPresenterProtocol {
-    init(view: MainViewProtocol, item: Item)
+protocol NewsViewPresenterProtocol {
+    init(view: NewsViewProtocol, item: Item)
     func showString()
 }
 
-class MainPresenter: MainViewPresenterProtocol {
-    let view: MainViewProtocol
+class NewsPresenter: NewsViewPresenterProtocol {
+    let view: NewsViewProtocol
     let item: Item
     
-    required init(view: MainViewProtocol, item: Item) {
+    required init(view: NewsViewProtocol, item: Item) {
         self.view = view
         self.item = item
     }

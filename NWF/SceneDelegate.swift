@@ -20,8 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         window?.backgroundColor = .systemGray4
         
-        let mainVC = ModuleBuilder.createMainModule()
-        let navigationMainVC = ModuleBuilder.generateNavigationController(rootViewController: mainVC, title: "Main", image: UIImage(systemName: "person") ?? UIImage())
+        let mainVC = ModuleBuilder.createNewsModule()
+        let navigationMainVC = ModuleBuilder.generateNavigationController(rootViewController: mainVC, title: "News", image: UIImage(systemName: "newspaper.fill") ?? UIImage())
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [navigationMainVC]
         
