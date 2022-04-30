@@ -42,18 +42,25 @@ class NewsViewController: UIViewController {
 
 extension NewsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        presenter.news?.articles.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        cell.textLabel?.text = "news"
+        let articleTitle = presenter.news?.articles[indexPath.row].title
+        cell.textLabel?.text = articleTitle
         cell.backgroundColor = .clear
         return cell
     }
 }
 
 extension NewsViewController: NewsViewProtocol {
-    func setString(string: String) {
+    func success() {
+        newsTable.reloadData()
     }
+    
+    func failure(error: Error) {
+        print(error.localizedDescription)
+    }
+    
 }
