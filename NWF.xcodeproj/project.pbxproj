@@ -16,6 +16,7 @@
 		7FBB59C4281BC6C800004410 /* NewsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB59C3281BC6C800004410 /* NewsPresenter.swift */; };
 		7FBB59C6281BC85500004410 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB59C5281BC85500004410 /* News.swift */; };
 		7FBB59C9281C12C900004410 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB59C8281C12C900004410 /* ModuleBuilder.swift */; };
+		7FBB59CD281D605900004410 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB59CC281D605900004410 /* NetworkService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		7FBB59C3281BC6C800004410 /* NewsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPresenter.swift; sourceTree = "<group>"; };
 		7FBB59C5281BC85500004410 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		7FBB59C8281C12C900004410 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
+		7FBB59CC281D605900004410 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				7FBB59B1281BBCB000004410 /* SceneDelegate.swift */,
 				7FBB59C8281C12C900004410 /* ModuleBuilder.swift */,
 				7FBB59C7281C0E5D00004410 /* MainModule */,
+				7FBB59CC281D605900004410 /* NetworkService.swift */,
 				7FBB59B5281BBCB000004410 /* Main.storyboard */,
 				7FBB59B8281BBCB200004410 /* Assets.xcassets */,
 				7FBB59BA281BBCB200004410 /* LaunchScreen.storyboard */,
@@ -161,6 +164,7 @@
 				7FBB59B2281BBCB000004410 /* SceneDelegate.swift in Sources */,
 				7FBB59C4281BC6C800004410 /* NewsPresenter.swift in Sources */,
 				7FBB59C9281C12C900004410 /* ModuleBuilder.swift in Sources */,
+				7FBB59CD281D605900004410 /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,23 +8,38 @@
 import Foundation
 
 protocol NewsViewProtocol {
-    func setString(string: String)
+    func success()
+    func failure(error: Error)
 }
 
 protocol NewsViewPresenterProtocol {
-    init(view: NewsViewProtocol, news: News)
-    func showString()
+    init(view: NewsViewProtocol, networkService: NetworkServiceProtocol)
+    func getNews()
+    var news: News? { get set }
 }
 
 class NewsPresenter: NewsViewPresenterProtocol {
-    let view: NewsViewProtocol
-    let news: News
+    var view: NewsViewProtocol?
+    let networkService: NetworkServiceProtocol
+    var news: News?
     
-    required init(view: NewsViewProtocol, news: News) {
+    required init(view: NewsViewProtocol, networkService: NetworkServiceProtocol) {
         self.view = view
-        self.news = news
+        self.networkService = networkService
+        getNews()
     }
-    
-    func showString() {
+    func getNews() {
+        networkService.getNews { [weak self] result in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let news):
+                    self.news = news
+                    self.view?.success()
+                case .failure(let error):
+                    self.view?.failure(error: error)
+                }
+            }
+        }
     }
 }
