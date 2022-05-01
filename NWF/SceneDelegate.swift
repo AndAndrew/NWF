@@ -18,11 +18,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.backgroundColor = .systemGray4
+        window?.backgroundColor = .systemGray6
         
         let mainVC = ModuleBuilder.createNewsModule()
         let navigationMainVC = ModuleBuilder.generateNavigationController(rootViewController: mainVC, title: "News", image: UIImage(systemName: "newspaper.fill") ?? UIImage())
         let tabBarController = UITabBarController()
+        tabBarController.tabBar.barTintColor = .systemGray4
         tabBarController.viewControllers = [navigationMainVC]
         
         window?.rootViewController = tabBarController
