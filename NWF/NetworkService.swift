@@ -8,13 +8,12 @@
 import Foundation
 
 protocol NetworkServiceProtocol {
-    func getNews(completion: @escaping (Result<News?, Error>) -> ())
+    func getData<T: Decodable>(fromURLString: String, completion: @escaping (Result<T, Error>) -> ())
 }
 
 class NetworkService: NetworkServiceProtocol {
-    func getNews(completion: @escaping (Result<News?, Error>) -> ()) {
+    func getData<T: Decodable>(fromURLString urlString: String, completion: @escaping (Result<T, Error>) -> ()) {
         
-        let urlString = "https://newsapi.org/v2/everything?domains=wsj.com&apiKey=f72d06e2351a4a72bf54a30cce6aba82"
         guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTask(with: url) { data, _, error in
@@ -23,8 +22,8 @@ class NetworkService: NetworkServiceProtocol {
                 return
             }
             do {
-                let newsJSON = try JSONDecoder().decode(News.self, from: data!)
-                completion(.success(newsJSON))
+                let JSON = try JSONDecoder().decode(T.self, from: data!)
+                completion(.success(JSON))
             } catch {
                 completion(.failure(error))
             }

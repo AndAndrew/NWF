@@ -29,7 +29,7 @@ class NewsPresenter: NewsViewPresenterProtocol {
         getNews()
     }
     func getNews() {
-        networkService.getNews { [weak self] result in
+        networkService.getData(fromURLString: "https://newsapi.org/v2/everything?domains=wsj.com&apiKey=f72d06e2351a4a72bf54a30cce6aba82") { [weak self] (result: Result<News?, Error>) in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 switch result {
