@@ -20,6 +20,11 @@ class ModuleBuilder: Builder {
         return view
     }
     
+    static func createWeatherForecastModule() -> UIViewController {
+        let view = WeatherForecastViewController()
+        return view
+    }
+    
     static func generateNavigationController(rootViewController: UIViewController, title: String, image: UIImage) -> UIViewController {
         let navigationVC = UINavigationController(rootViewController: rootViewController)
         navigationVC.tabBarItem.title = title

@@ -21,9 +21,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.backgroundColor = .systemGray4
         
         let mainVC = ModuleBuilder.createNewsModule()
-        let navigationMainVC = ModuleBuilder.generateNavigationController(rootViewController: mainVC, title: "News", image: UIImage(systemName: "newspaper.fill") ?? UIImage())
+        let weatherForecastVC = ModuleBuilder.createWeatherForecastModule()
+        let navigationNewsVC = ModuleBuilder.generateNavigationController(rootViewController: mainVC, title: "News", image: UIImage(systemName: "newspaper.fill") ?? UIImage())
+        let navigationWeatherForecastVC = ModuleBuilder.generateNavigationController(rootViewController: weatherForecastVC, title: "Weather", image: UIImage(systemName: "sun.min.fill") ?? UIImage())
         let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [navigationMainVC]
+        tabBarController.viewControllers = [navigationNewsVC, navigationWeatherForecastVC]
         
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
