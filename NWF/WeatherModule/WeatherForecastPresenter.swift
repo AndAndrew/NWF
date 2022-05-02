@@ -8,7 +8,7 @@
 import Foundation
 
 protocol WeatherForecastViewProtocol {
-    func success()
+    func success(weatherForecast: WeatherForecast)
     func failure(error: Error)
 }
 
@@ -18,7 +18,7 @@ protocol WeatherForecastViewPresenterProtocol {
     var weatherForecast: WeatherForecast? { get set }
 }
 
-class NWeatherForecastPresenter: WeatherForecastViewPresenterProtocol {
+class WeatherForecastPresenter: WeatherForecastViewPresenterProtocol {
     var view: WeatherForecastViewProtocol?
     let networkService: NetworkServiceProtocol
     var weatherForecast: WeatherForecast?
@@ -35,7 +35,7 @@ class NWeatherForecastPresenter: WeatherForecastViewPresenterProtocol {
                 switch result {
                 case .success(let weatherForecast):
                     self.weatherForecast = weatherForecast
-                    self.view?.success()
+                    self.view?.success(weatherForecast: weatherForecast!)
                 case .failure(let error):
                     self.view?.failure(error: error)
                 }
