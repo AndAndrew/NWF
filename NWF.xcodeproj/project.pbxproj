@@ -19,6 +19,7 @@
 		7FBB59CD281D605900004410 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB59CC281D605900004410 /* NetworkService.swift */; };
 		7FBB59CF281FF98B00004410 /* WeatherForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB59CE281FF98B00004410 /* WeatherForecastViewController.swift */; };
 		7FBB59D12820003B00004410 /* WeatherForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB59D02820003B00004410 /* WeatherForecast.swift */; };
+		7FBB59D42820014E00004410 /* WeatherForecastPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB59D32820014E00004410 /* WeatherForecastPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		7FBB59CC281D605900004410 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		7FBB59CE281FF98B00004410 /* WeatherForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastViewController.swift; sourceTree = "<group>"; };
 		7FBB59D02820003B00004410 /* WeatherForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecast.swift; sourceTree = "<group>"; };
+		7FBB59D32820014E00004410 /* WeatherForecastPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			children = (
 				7FBB59CE281FF98B00004410 /* WeatherForecastViewController.swift */,
 				7FBB59D02820003B00004410 /* WeatherForecast.swift */,
+				7FBB59D32820014E00004410 /* WeatherForecastPresenter.swift */,
 			);
 			path = WeatherModule;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 				7FBB59B4281BBCB000004410 /* NewsViewController.swift in Sources */,
 				7FBB59B0281BBCB000004410 /* AppDelegate.swift in Sources */,
 				7FBB59B2281BBCB000004410 /* SceneDelegate.swift in Sources */,
+				7FBB59D42820014E00004410 /* WeatherForecastPresenter.swift in Sources */,
 				7FBB59CF281FF98B00004410 /* WeatherForecastViewController.swift in Sources */,
 				7FBB59C4281BC6C800004410 /* NewsPresenter.swift in Sources */,
 				7FBB59C9281C12C900004410 /* ModuleBuilder.swift in Sources */,
