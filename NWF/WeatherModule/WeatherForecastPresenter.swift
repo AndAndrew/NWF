@@ -8,13 +8,15 @@
 import Foundation
 
 protocol WeatherForecastViewProtocol {
-    func success(weatherForecast: WeatherForecast)
+    func success()
     func failure(error: Error)
+    func setWeatherForecastData(weatherForecast: WeatherForecast?)
 }
 
 protocol WeatherForecastViewPresenterProtocol {
     init(view: WeatherForecastViewProtocol, networkService: NetworkServiceProtocol)
     func getWeatherForecast()
+    func setWeatherForecastData()
     var weatherForecast: WeatherForecast? { get set }
 }
 
@@ -35,11 +37,15 @@ class WeatherForecastPresenter: WeatherForecastViewPresenterProtocol {
                 switch result {
                 case .success(let weatherForecast):
                     self.weatherForecast = weatherForecast
-                    self.view?.success(weatherForecast: weatherForecast!)
+                    self.view?.success()
                 case .failure(let error):
                     self.view?.failure(error: error)
                 }
             }
         }
+    }
+    
+    public func setWeatherForecastData() {
+        self.view?.setWeatherForecastData(weatherForecast: weatherForecast)
     }
 }

@@ -10,19 +10,20 @@ import UIKit
 class WeatherForecastViewController: UIViewController {
     
     var presenter: WeatherForecastViewPresenterProtocol!
-    
-    var temperatureLabel = UILabel()
+    var temperatureLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tabBarController?.tabBar.tintColor = .systemRed
         setupViews()
+        presenter.setWeatherForecastData()
         setupConstrainst()
     }
     
     private func setupViews() {
         
+        temperatureLabel = UILabel()
         temperatureLabel.translatesAutoresizingMaskIntoConstraints = false
         temperatureLabel.font = UIFont(name: "Rockwell", size: 80)
         temperatureLabel.textAlignment = .center
@@ -40,12 +41,15 @@ class WeatherForecastViewController: UIViewController {
 }
 
 extension WeatherForecastViewController: WeatherForecastViewProtocol {
-    func success(weatherForecast: WeatherForecast) {
-        temperatureLabel.text = "\(Int(round(weatherForecast.list[0].main.temp - 273.15)))ºC"
+    func success() {
     }
     
     func failure(error: Error) {
         print(error.localizedDescription)
+    }
+    
+    func setWeatherForecastData(weatherForecast: WeatherForecast?) {
+        temperatureLabel.text = "\(Int(round((weatherForecast?.list[0].main.temp ?? 273.15) - 273.15)))ºC"
     }
     
 }
