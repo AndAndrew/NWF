@@ -10,6 +10,7 @@ import UIKit
 class WeatherForecastViewController: UIViewController {
     
     var presenter: WeatherForecastViewPresenterProtocol!
+    var cityLabel: UILabel!
     var temperatureLabel: UILabel!
 
     override func viewDidLoad() {
@@ -23,20 +24,45 @@ class WeatherForecastViewController: UIViewController {
     
     private func setupViews() {
         
+        cityLabel = UILabel()
+        cityLabel.translatesAutoresizingMaskIntoConstraints = false
+        cityLabel.text = "City"
+        cityLabel.highlightedTextColor = .systemGray2
+        cityLabel.isHighlighted = true
+        cityLabel.font = UIFont(name: "Rockwell", size: 65)
+        cityLabel.minimumScaleFactor = 0.4
+        cityLabel.adjustsFontSizeToFitWidth = true
+        cityLabel.textAlignment = .center
+        cityLabel.contentMode = .center
+        view.addSubview(cityLabel)
+        
         temperatureLabel = UILabel()
         temperatureLabel.translatesAutoresizingMaskIntoConstraints = false
+        temperatureLabel.highlightedTextColor = .systemGray2
+        temperatureLabel.isHighlighted = true
         temperatureLabel.font = UIFont(name: "Rockwell", size: 80)
+        temperatureLabel.minimumScaleFactor = 0.4
+        temperatureLabel.adjustsFontSizeToFitWidth = true
         temperatureLabel.textAlignment = .center
         temperatureLabel.contentMode = .center
         view.addSubview(temperatureLabel)
     }
     
     private func setupConstrainst() {
+        let thirdOfViewHeight = view.safeAreaLayoutGuide.layoutFrame.size.height / 3
         NSLayoutConstraint.activate([
-            temperatureLabel.topAnchor.constraint(equalTo: view.topAnchor),
+            
+            cityLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            cityLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            cityLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            cityLabel.heightAnchor.constraint(equalToConstant: thirdOfViewHeight / 2),
+            
+            temperatureLabel.topAnchor.constraint(equalTo: cityLabel.bottomAnchor),
             temperatureLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             temperatureLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            temperatureLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
+            temperatureLabel.heightAnchor.constraint(equalToConstant: thirdOfViewHeight / 2)
+        
+        ])
     }
 }
 
@@ -49,7 +75,14 @@ extension WeatherForecastViewController: WeatherForecastViewProtocol {
     }
     
     func setWeatherForecastData(weatherForecast: WeatherForecast?) {
-        temperatureLabel.text = "\(Int(round((weatherForecast?.list[0].main.temp ?? 273.15) - 273.15)))ºC"
+        guard let weatherForecast = weatherForecast else { return }
+        let main = weatherForecast.list[0].main
+        
+        cityLabel.text = weatherForecast.city.name
+        cityLabel.isHighlighted = false
+        
+        temperatureLabel.text = "\(Int(round((main.temp) - 273.15)))ºC"
+        temperatureLabel.isHighlighted = false
     }
     
 }
