@@ -12,6 +12,7 @@ class WeatherForecastViewController: UIViewController {
     var presenter: WeatherForecastViewPresenterProtocol!
     var cityLabel: UILabel!
     var temperatureLabel: UILabel!
+    var weatherImageView: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +47,14 @@ class WeatherForecastViewController: UIViewController {
         temperatureLabel.textAlignment = .center
         temperatureLabel.contentMode = .center
         view.addSubview(temperatureLabel)
+        
+        weatherImageView = UIImageView()
+        weatherImageView.translatesAutoresizingMaskIntoConstraints = false
+        weatherImageView.contentMode = .scaleAspectFit
+        weatherImageView.highlightedImage = UIImage(systemName: "globe.europe.africa.fill")
+        weatherImageView.isHighlighted = true
+        weatherImageView.tintColor = .systemGray2
+        view.addSubview(weatherImageView)
     }
     
     private func setupConstrainst() {
@@ -60,8 +69,12 @@ class WeatherForecastViewController: UIViewController {
             temperatureLabel.topAnchor.constraint(equalTo: cityLabel.bottomAnchor),
             temperatureLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             temperatureLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            temperatureLabel.heightAnchor.constraint(equalToConstant: thirdOfViewHeight / 2)
-        
+            temperatureLabel.heightAnchor.constraint(equalToConstant: thirdOfViewHeight / 2),
+            
+            weatherImageView.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor),
+            weatherImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            weatherImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            weatherImageView.heightAnchor.constraint(equalToConstant: thirdOfViewHeight)
         ])
     }
 }
@@ -83,6 +96,11 @@ extension WeatherForecastViewController: WeatherForecastViewProtocol {
         
         temperatureLabel.text = "\(Int(round((main.temp) - 273.15)))ºC"
         temperatureLabel.isHighlighted = false
+        
+        if let url = URL(string: "https://openweathermap.org/img/wn/\(weatherForecast.list[0].weather[0].icon)@4x.png") {
+            weatherImageView.isHighlighted = false
+            guard let data = try? Data(contentsOf: url) else { return }
+            weatherImageView.image = UIImage(data: data)
+        }
     }
-    
 }
