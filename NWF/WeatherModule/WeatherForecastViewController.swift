@@ -25,7 +25,7 @@ class WeatherForecastViewController: UIViewController {
         setupViews()
         anotherDayForecastCollection.dataSource = self
         anotherDayForecastCollection.delegate = self
-        anotherDayForecastCollection.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        anotherDayForecastCollection.register(WeatherForecastCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         presenter.setWeatherForecastData()
         setupConstrainst()
     }
@@ -67,6 +67,7 @@ class WeatherForecastViewController: UIViewController {
         layout.scrollDirection = .horizontal
         anotherDayForecastCollection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         anotherDayForecastCollection.translatesAutoresizingMaskIntoConstraints = false
+        anotherDayForecastCollection.backgroundColor = .clear
         view.addSubview(anotherDayForecastCollection)
     }
     
@@ -103,8 +104,9 @@ extension WeatherForecastViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-        print("\(anotherDayWeatherForecast[indexPath.item].0) - \(anotherDayWeatherForecast[indexPath.item].1)")
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! WeatherForecastCollectionViewCell
+        cell.dateLabel.text = anotherDayWeatherForecast[indexPath.item].0
+        cell.temperatureLabel.text = "\(anotherDayWeatherForecast[indexPath.item].1)"
         return cell
     }
 }
@@ -144,7 +146,6 @@ extension WeatherForecastViewController: WeatherForecastViewProtocol {
         }
         
         anotherDayWeatherForecast = getAnotherDayWeatherForecast(weatherForecast: weatherForecast)
-        
     }
     
     func getAnotherDayWeatherForecast(weatherForecast: WeatherForecast) -> [(String, Int)] {
@@ -152,14 +153,16 @@ extension WeatherForecastViewController: WeatherForecastViewProtocol {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let anotherDayDateFormatter = DateFormatter()
-        anotherDayDateFormatter.dateFormat = "dd.MM"
+        anotherDayDateFormatter.dateFormat = "dd.MM HH:mm"
         let today = dateFormatter.date(from: weatherForecast.list[0].dt_txt)!
         let calendar = Calendar(identifier: .gregorian)
         let tomorrow = calendar.startOfDay(for: calendar.date(byAdding: .day, value: 1, to: today)!)
         let tomorrowIndex = weatherForecast.list.firstIndex(where: {$0.dt_txt == (dateFormatter.string(from: tomorrow))})!
-        return [(anotherDayDateFormatter.string(from: dateFormatter.date(from: weatherForecast.list[tomorrowIndex].dt_txt)!), Int(round(weatherForecast.list[tomorrowIndex].main.temp - 273.15))),
-                (anotherDayDateFormatter.string(from: dateFormatter.date(from: weatherForecast.list[tomorrowIndex + 8].dt_txt)!), Int(round(weatherForecast.list[tomorrowIndex + 8].main.temp - 273.15))),
-                (anotherDayDateFormatter.string(from: dateFormatter.date(from: weatherForecast.list[tomorrowIndex + 16].dt_txt)!), Int(round(weatherForecast.list[tomorrowIndex + 16].main.temp - 273.15))),
-                (anotherDayDateFormatter.string(from: dateFormatter.date(from: weatherForecast.list[tomorrowIndex + 24].dt_txt)!), Int(round(weatherForecast.list[tomorrowIndex + 24].main.temp - 273.15)))]
+        let anotherDayWeatherForecastArray: [(String, Int)] = [getData(fromIndex: 1), getData(fromIndex: 2), getData(fromIndex: 3), getData(fromIndex: 4), getData(fromIndex: 5), getData(fromIndex: 6), getData(fromIndex: tomorrowIndex + 12), getData(fromIndex: tomorrowIndex + 20), getData(fromIndex: tomorrowIndex + 28)]
+        
+        func getData(fromIndex index: Int) -> (String, Int) {
+            return (anotherDayDateFormatter.string(from: dateFormatter.date(from: weatherForecast.list[index].dt_txt)!), Int(round(weatherForecast.list[index].main.temp - 273.15)))
+        }
+        return anotherDayWeatherForecastArray
     }
 }
