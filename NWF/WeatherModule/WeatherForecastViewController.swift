@@ -13,6 +13,7 @@ class WeatherForecastViewController: UIViewController {
     var cellId = "cell"
     
     var anotherDayWeatherForecast: [(String, Int)]!
+    var anotherDayWeatherForecastIndexes: [Int: Int]!
     var cityLabel: UILabel!
     var temperatureLabel: UILabel!
     var weatherImageView: UIImageView!
@@ -194,6 +195,15 @@ extension WeatherForecastViewController: UICollectionViewDataSource {
     }
 }
 
+extension WeatherForecastViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let weatherForecast = presenter.weatherForecast
+        let index = anotherDayWeatherForecastIndexes[indexPath.item]
+        let detailWeatherForecastViewController = ModuleBuilder.createDetailWeatherForecastModule(weatherForecast: weatherForecast, index: index)
+        navigationController?.pushViewController(detailWeatherForecastViewController, animated: true)
+    }
+}
+
 extension WeatherForecastViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.size.height - 10, height: collectionView.frame.size.height - 10)
@@ -228,14 +238,14 @@ extension WeatherForecastViewController: WeatherForecastViewProtocol {
             weatherImageView.image = UIImage(data: data)
         }
         
-        anotherDayWeatherForecast = getAnotherDayWeatherForecast(weatherForecast: weatherForecast)
+        getAnotherDayWeatherForecast(weatherForecast: weatherForecast)
         
         feelsLikeTemperature.text = "\(Int(round((main.feels_like) - 273.15)))ºC"
         humidity.text = "\(main.humidity)%"
         pressure.text = "\(Int(round(Float(main.pressure) * 0.750062)))mm"
     }
     
-    func getAnotherDayWeatherForecast(weatherForecast: WeatherForecast) -> [(String, Int)] {
+    func getAnotherDayWeatherForecast(weatherForecast: WeatherForecast) {
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -245,11 +255,11 @@ extension WeatherForecastViewController: WeatherForecastViewProtocol {
         let calendar = Calendar(identifier: .gregorian)
         let tomorrow = calendar.startOfDay(for: calendar.date(byAdding: .day, value: 1, to: today)!)
         let tomorrowIndex = weatherForecast.list.firstIndex(where: {$0.dt_txt == (dateFormatter.string(from: tomorrow))})!
-        let anotherDayWeatherForecastArray: [(String, Int)] = [getData(fromIndex: 1), getData(fromIndex: 2), getData(fromIndex: 3), getData(fromIndex: 4), getData(fromIndex: 5), getData(fromIndex: 6), getData(fromIndex: tomorrowIndex + 12), getData(fromIndex: tomorrowIndex + 20), getData(fromIndex: tomorrowIndex + 28)]
+        anotherDayWeatherForecastIndexes = [0: 1, 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: tomorrowIndex + 12, 7: tomorrowIndex + 20, 8: tomorrowIndex + 28]
+        anotherDayWeatherForecast = [getData(fromIndex: 1), getData(fromIndex: 2), getData(fromIndex: 3), getData(fromIndex: 4), getData(fromIndex: 5), getData(fromIndex: 6), getData(fromIndex: tomorrowIndex + 12), getData(fromIndex: tomorrowIndex + 20), getData(fromIndex: tomorrowIndex + 28)]
         
         func getData(fromIndex index: Int) -> (String, Int) {
             return (anotherDayDateFormatter.string(from: dateFormatter.date(from: weatherForecast.list[index].dt_txt)!), Int(round(weatherForecast.list[index].main.temp - 273.15)))
         }
-        return anotherDayWeatherForecastArray
     }
 }

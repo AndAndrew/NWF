@@ -18,6 +18,7 @@ class DetailWeatherForecastViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .systemGray4
         setupViews()
         presenter.setWeatherForecast()
         setupConstrainst()
@@ -89,7 +90,7 @@ extension DetailWeatherForecastViewController: DetailWeatherForecastViewProtocol
         temperatureLabel.text = "\(Int(round((main.temp) - 273.15)))ºC"
         temperatureLabel.isHighlighted = false
         
-        if let url = URL(string: "https://openweathermap.org/img/wn/\(weatherForecast.list[index].weather[index].icon)@4x.png") {
+        if let url = URL(string: "https://openweathermap.org/img/wn/\(weatherForecast.list[index].weather[0].icon)@4x.png") {
             weatherImageView.isHighlighted = false
             guard let data = try? Data(contentsOf: url) else { return }
             weatherImageView.image = UIImage(data: data)
