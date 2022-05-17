@@ -27,6 +27,7 @@ class WeatherForecastViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .systemGray4
         tabBarController?.tabBar.tintColor = .systemRed
         setupViews()
         anotherDayForecastCollection.dataSource = self

@@ -88,9 +88,9 @@
 				7FBB59AF281BBCB000004410 /* AppDelegate.swift */,
 				7FBB59B1281BBCB000004410 /* SceneDelegate.swift */,
 				7FBB59C8281C12C900004410 /* ModuleBuilder.swift */,
-				7FBB59C7281C0E5D00004410 /* MainModule */,
-				7FBB59D2282000D300004410 /* WeatherModule */,
 				7FBB59CC281D605900004410 /* NetworkService.swift */,
+				7FBB59C7281C0E5D00004410 /* NewsModule */,
+				7FBB59D2282000D300004410 /* WeatherModule */,
 				7F7AAFB32833782900FF5AEE /* DetailWeatherForecastModule */,
 				7FBB59B5281BBCB000004410 /* Main.storyboard */,
 				7FBB59B8281BBCB200004410 /* Assets.xcassets */,
@@ -100,14 +100,14 @@
 			path = NWF;
 			sourceTree = "<group>";
 		};
-		7FBB59C7281C0E5D00004410 /* MainModule */ = {
+		7FBB59C7281C0E5D00004410 /* NewsModule */ = {
 			isa = PBXGroup;
 			children = (
 				7FBB59B3281BBCB000004410 /* NewsViewController.swift */,
 				7FBB59C5281BC85500004410 /* News.swift */,
 				7FBB59C3281BC6C800004410 /* NewsPresenter.swift */,
 			);
-			path = MainModule;
+			path = NewsModule;
 			sourceTree = "<group>";
 		};
 		7FBB59D2282000D300004410 /* WeatherModule */ = {

@@ -16,6 +16,7 @@ class NewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .systemGray4
         setupViews()
         newsTable.dataSource = self
         newsTable.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
