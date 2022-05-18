@@ -10,6 +10,7 @@
 		7F7AAFAE282E792100FF5AEE /* WeatherForecastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7AAFAD282E792100FF5AEE /* WeatherForecastCollectionViewCell.swift */; };
 		7F7AAFB0283119A200FF5AEE /* DetailWeatherForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7AAFAF283119A200FF5AEE /* DetailWeatherForecastViewController.swift */; };
 		7F7AAFB2283119C200FF5AEE /* DetailWeatherForecastPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7AAFB1283119C200FF5AEE /* DetailWeatherForecastPresenter.swift */; };
+		7F7AAFB52835118A00FF5AEE /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7AAFB42835118A00FF5AEE /* Router.swift */; };
 		7FBB59B0281BBCB000004410 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB59AF281BBCB000004410 /* AppDelegate.swift */; };
 		7FBB59B2281BBCB000004410 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB59B1281BBCB000004410 /* SceneDelegate.swift */; };
 		7FBB59B4281BBCB000004410 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB59B3281BBCB000004410 /* NewsViewController.swift */; };
@@ -18,7 +19,7 @@
 		7FBB59BC281BBCB200004410 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FBB59BA281BBCB200004410 /* LaunchScreen.storyboard */; };
 		7FBB59C4281BC6C800004410 /* NewsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB59C3281BC6C800004410 /* NewsPresenter.swift */; };
 		7FBB59C6281BC85500004410 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB59C5281BC85500004410 /* News.swift */; };
-		7FBB59C9281C12C900004410 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB59C8281C12C900004410 /* ModuleBuilder.swift */; };
+		7FBB59C9281C12C900004410 /* AssemblyModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB59C8281C12C900004410 /* AssemblyModuleBuilder.swift */; };
 		7FBB59CD281D605900004410 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB59CC281D605900004410 /* NetworkService.swift */; };
 		7FBB59CF281FF98B00004410 /* WeatherForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB59CE281FF98B00004410 /* WeatherForecastViewController.swift */; };
 		7FBB59D12820003B00004410 /* WeatherForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB59D02820003B00004410 /* WeatherForecast.swift */; };
@@ -29,6 +30,7 @@
 		7F7AAFAD282E792100FF5AEE /* WeatherForecastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastCollectionViewCell.swift; sourceTree = "<group>"; };
 		7F7AAFAF283119A200FF5AEE /* DetailWeatherForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWeatherForecastViewController.swift; sourceTree = "<group>"; };
 		7F7AAFB1283119C200FF5AEE /* DetailWeatherForecastPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWeatherForecastPresenter.swift; sourceTree = "<group>"; };
+		7F7AAFB42835118A00FF5AEE /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		7FBB59AC281BBCB000004410 /* NWF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NWF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FBB59AF281BBCB000004410 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7FBB59B1281BBCB000004410 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,7 +41,7 @@
 		7FBB59BD281BBCB200004410 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7FBB59C3281BC6C800004410 /* NewsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPresenter.swift; sourceTree = "<group>"; };
 		7FBB59C5281BC85500004410 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
-		7FBB59C8281C12C900004410 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
+		7FBB59C8281C12C900004410 /* AssemblyModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyModuleBuilder.swift; sourceTree = "<group>"; };
 		7FBB59CC281D605900004410 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		7FBB59CE281FF98B00004410 /* WeatherForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastViewController.swift; sourceTree = "<group>"; };
 		7FBB59D02820003B00004410 /* WeatherForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecast.swift; sourceTree = "<group>"; };
@@ -87,7 +89,8 @@
 			children = (
 				7FBB59AF281BBCB000004410 /* AppDelegate.swift */,
 				7FBB59B1281BBCB000004410 /* SceneDelegate.swift */,
-				7FBB59C8281C12C900004410 /* ModuleBuilder.swift */,
+				7FBB59C8281C12C900004410 /* AssemblyModuleBuilder.swift */,
+				7F7AAFB42835118A00FF5AEE /* Router.swift */,
 				7FBB59CC281D605900004410 /* NetworkService.swift */,
 				7FBB59C7281C0E5D00004410 /* NewsModule */,
 				7FBB59D2282000D300004410 /* WeatherModule */,
@@ -202,7 +205,8 @@
 				7FBB59D42820014E00004410 /* WeatherForecastPresenter.swift in Sources */,
 				7FBB59CF281FF98B00004410 /* WeatherForecastViewController.swift in Sources */,
 				7FBB59C4281BC6C800004410 /* NewsPresenter.swift in Sources */,
-				7FBB59C9281C12C900004410 /* ModuleBuilder.swift in Sources */,
+				7F7AAFB52835118A00FF5AEE /* Router.swift in Sources */,
+				7FBB59C9281C12C900004410 /* AssemblyModuleBuilder.swift in Sources */,
 				7FBB59CD281D605900004410 /* NetworkService.swift in Sources */,
 				7F7AAFAE282E792100FF5AEE /* WeatherForecastCollectionViewCell.swift in Sources */,
 			);

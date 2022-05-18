@@ -200,8 +200,7 @@ extension WeatherForecastViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let weatherForecast = presenter.weatherForecast
         let index = anotherDayWeatherForecastIndexes[indexPath.item]
-        let detailWeatherForecastViewController = ModuleBuilder.createDetailWeatherForecastModule(weatherForecast: weatherForecast, index: index)
-        navigationController?.pushViewController(detailWeatherForecastViewController, animated: true)
+        presenter.tapOnCollectionCell(navVC: self.navigationController!, weatherForecast: weatherForecast, index: index)
     }
 }
 

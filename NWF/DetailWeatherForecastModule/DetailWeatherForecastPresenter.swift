@@ -12,17 +12,19 @@ protocol DetailWeatherForecastViewProtocol {
 }
 
 protocol DetailWeatherForecastViewPresenterProtocol {
-    init(view: DetailWeatherForecastViewProtocol, weatherForecast: WeatherForecast?, index: Int?)
+    init(view: DetailWeatherForecastViewProtocol, router: RouterProtocol, weatherForecast: WeatherForecast?, index: Int?)
     func setWeatherForecast()
 }
 
 class DetailWeatherForecastPresenter: DetailWeatherForecastViewPresenterProtocol {
     var view: DetailWeatherForecastViewProtocol?
+    var router: RouterProtocol?
     var weatherForecast: WeatherForecast?
     var index: Int?
     
-    required init(view: DetailWeatherForecastViewProtocol, weatherForecast: WeatherForecast?, index: Int?) {
+    required init(view: DetailWeatherForecastViewProtocol, router: RouterProtocol, weatherForecast: WeatherForecast?, index: Int?) {
         self.view = view
+        self.router = router
         self.weatherForecast = weatherForecast
         self.index = index
     }
