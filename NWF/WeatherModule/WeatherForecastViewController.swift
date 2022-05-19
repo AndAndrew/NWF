@@ -19,10 +19,9 @@ class WeatherForecastViewController: UIViewController {
     var weatherImageView: UIImageView!
     var anotherDayForecastCollection: UICollectionView!
     var labelsStack: UIStackView!
-    var feelsLikeTemperature: UILabel!
-    var pressureLabel: UILabel!
-    var pressure: UILabel!
-    var humidity: UILabel!
+    var feelsLikeStack: TwoLabelStack!
+    var pressureStack: TwoLabelStack!
+    var humidityStack: TwoLabelStack!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,68 +76,14 @@ class WeatherForecastViewController: UIViewController {
         anotherDayForecastCollection.backgroundColor = .clear
         view.addSubview(anotherDayForecastCollection)
         
-        let feelsLikeLabel = UILabel()
-        feelsLikeLabel.translatesAutoresizingMaskIntoConstraints = false
-        feelsLikeLabel.font = UIFont.systemFont(ofSize: 20)
-        feelsLikeLabel.text = "Feels like"
-        feelsLikeLabel.textAlignment = .center
-        feelsLikeLabel.contentMode = .center
+        feelsLikeStack = TwoLabelStack()
+        feelsLikeStack.titleLabel.text = "Feels like"
         
-        feelsLikeTemperature = UILabel()
-        feelsLikeTemperature.translatesAutoresizingMaskIntoConstraints = false
-        feelsLikeTemperature.font = UIFont.systemFont(ofSize: 20)
-        feelsLikeTemperature.textAlignment = .center
-        feelsLikeTemperature.contentMode = .center
+        pressureStack = TwoLabelStack()
+        pressureStack.titleLabel.text = "Pressure"
         
-        let humidityLabel = UILabel()
-        humidityLabel.translatesAutoresizingMaskIntoConstraints = false
-        humidityLabel.font = UIFont.systemFont(ofSize: 20)
-        humidityLabel.text = "Humidity"
-        humidityLabel.textAlignment = .center
-        humidityLabel.contentMode = .center
-        
-        humidity = UILabel()
-        humidity.translatesAutoresizingMaskIntoConstraints = false
-        humidity.font = UIFont.systemFont(ofSize: 20)
-        humidity.textAlignment = .center
-        humidity.contentMode = .center
-        
-        let pressureLabel = UILabel()
-        pressureLabel.translatesAutoresizingMaskIntoConstraints = false
-        pressureLabel.font = UIFont.systemFont(ofSize: 20)
-        pressureLabel.text = "Pressure"
-        pressureLabel.textAlignment = .center
-        pressureLabel.contentMode = .center
-        
-        pressure = UILabel()
-        pressure.translatesAutoresizingMaskIntoConstraints = false
-        pressure.font = UIFont.systemFont(ofSize: 20)
-        pressure.textAlignment = .center
-        pressure.contentMode = .center
-        
-        let feelsLikeStack = UIStackView()
-        feelsLikeStack.translatesAutoresizingMaskIntoConstraints = false
-        feelsLikeStack.distribution = .fillEqually
-        feelsLikeStack.axis = .vertical
-        feelsLikeStack.spacing = 5
-        feelsLikeStack.addArrangedSubview(feelsLikeLabel)
-        feelsLikeStack.addArrangedSubview(feelsLikeTemperature)
-        
-        let humidityStack = UIStackView()
-        humidityStack.translatesAutoresizingMaskIntoConstraints = false
-        humidityStack.distribution = .fillEqually
-        humidityStack.axis = .vertical
-        humidityStack.spacing = 5
-        humidityStack.addArrangedSubview(humidityLabel)
-        humidityStack.addArrangedSubview(humidity)
-        
-        let pressureStack = UIStackView()
-        pressureStack.translatesAutoresizingMaskIntoConstraints = false
-        pressureStack.distribution = .fillEqually
-        pressureStack.axis = .vertical
-        pressureStack.spacing = 5
-        pressureStack.addArrangedSubview(pressureLabel)
-        pressureStack.addArrangedSubview(pressure)
+        humidityStack = TwoLabelStack()
+        humidityStack.titleLabel.text = "Humidity"
         
         labelsStack = UIStackView()
         labelsStack.translatesAutoresizingMaskIntoConstraints = false
@@ -240,9 +185,9 @@ extension WeatherForecastViewController: WeatherForecastViewProtocol {
         
         getAnotherDayWeatherForecast(weatherForecast: weatherForecast)
         
-        feelsLikeTemperature.text = "\(Int(round((main.feels_like) - 273.15)))ºC"
-        humidity.text = "\(main.humidity)%"
-        pressure.text = "\(Int(round(Float(main.pressure) * 0.750062)))mm"
+        feelsLikeStack.contentLabel.text = "\(Int(round((main.feels_like) - 273.15)))ºC"
+        humidityStack.contentLabel.text = "\(main.humidity)%"
+        pressureStack.contentLabel.text = "\(Int(round(Float(main.pressure) * 0.750062)))mm"
     }
     
     func getAnotherDayWeatherForecast(weatherForecast: WeatherForecast) {

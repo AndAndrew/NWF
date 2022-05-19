@@ -1,5 +1,5 @@
 //
-//  twoLabelStack.swift
+//  TwoLabelStack.swift
 //  NWF
 //
 //  Created by Andrey Krivokhizhin on 19.05.2022.
@@ -7,14 +7,40 @@
 
 import UIKit
 
-class twoLabelStack: UIStackView {
+class TwoLabelStack: UIStackView {
+    
+    let titleLabel: UILabel = {
+        let title = UILabel()
+        title.translatesAutoresizingMaskIntoConstraints = false
+        title.font = UIFont.systemFont(ofSize: 20)
+        title.textAlignment = .center
+        title.contentMode = .center
+        
+        return title
+    }()
+    
+    let contentLabel: UILabel = {
+        let content = UILabel()
+        content.translatesAutoresizingMaskIntoConstraints = false
+        content.font = UIFont.systemFont(ofSize: 20)
+        content.textAlignment = .center
+        content.contentMode = .center
+        
+        return content
+    }()
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    override init(frame: CGRect) {
+        super.init(frame: .zero)
+        
+        translatesAutoresizingMaskIntoConstraints = false
+        distribution = .fillEqually
+        axis = .vertical
+        spacing = 5
+        
+        addArrangedSubview(titleLabel)
+        addArrangedSubview(contentLabel)
     }
-    */
-
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
