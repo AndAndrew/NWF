@@ -16,7 +16,6 @@ protocol RouterMain {
 protocol RouterProtocol: RouterMain {
     func initialViewController()
     func showDetailWeatherForecast(navigationController: UINavigationController?, weatherForecast: WeatherForecast?, index: Int?)
-    func poopToRoot()
 }
 
 class Router: RouterProtocol {
@@ -52,11 +51,5 @@ class Router: RouterProtocol {
         navigationVC.tabBarItem.title = title
         navigationVC.tabBarItem.image = image
         return navigationVC
-    }
-    
-    func poopToRoot() {
-        if let navigationController = navigationController {
-            navigationController.popToRootViewController(animated: true)
-        }
     }
 }
