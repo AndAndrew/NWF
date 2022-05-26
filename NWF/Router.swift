@@ -16,6 +16,7 @@ protocol RouterMain {
 protocol RouterProtocol: RouterMain {
     func initialViewController()
     func showDetailWeatherForecast(navigationController: UINavigationController?, weatherForecast: WeatherForecast?, index: Int?)
+    func showDetailNews(navigationController: UINavigationController?, news: News?, index: Int?)
 }
 
 class Router: RouterProtocol {
@@ -43,6 +44,13 @@ class Router: RouterProtocol {
         if let navigationController = navigationController {
             guard let detailWeatherForecastViewController = assemblyBuilder?.createDetailWeatherForecastModule(weatherForecast: weatherForecast, index: index, router: self) else { return }
             navigationController.pushViewController(detailWeatherForecastViewController, animated: true)
+        }
+    }
+    
+    func showDetailNews(navigationController: UINavigationController?, news: News?, index: Int?) {
+        if let navigationController = navigationController {
+            guard let detailNewsViewController = assemblyBuilder?.createDetailNewsModule(news: news, index: index, router: self) else { return }
+            navigationController.pushViewController(detailNewsViewController, animated: true)
         }
     }
     

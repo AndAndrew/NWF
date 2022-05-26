@@ -5,7 +5,7 @@
 //  Created by Andrey Krivokhizhin on 29.04.2022.
 //
 
-import Foundation
+import UIKit
 
 protocol NewsViewProtocol {
     func success()
@@ -16,12 +16,13 @@ protocol NewsViewPresenterProtocol {
     init(view: NewsViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol)
     func getNews()
     var news: News? { get set }
+    func tapOnTableCell(navVC: UINavigationController, news: News?, index: Int?)
 }
 
 class NewsPresenter: NewsViewPresenterProtocol {
     var view: NewsViewProtocol?
     let networkService: NetworkServiceProtocol
-    var router: RouterProtocol
+    var router: RouterProtocol?
     var news: News?
     
     required init(view: NewsViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol) {
@@ -29,6 +30,9 @@ class NewsPresenter: NewsViewPresenterProtocol {
         self.networkService = networkService
         self.router = router
         getNews()
+    }
+    func tapOnTableCell(navVC: UINavigationController, news: News?, index: Int?) {
+        router?.showDetailNews(navigationController: navVC, news: news, index: index)
     }
     func getNews() {
         networkService.getData(fromURLString: "https://newsapi.org/v2/everything?domains=wsj.com&apiKey=f72d06e2351a4a72bf54a30cce6aba82") { [weak self] (result: Result<News?, Error>) in

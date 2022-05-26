@@ -19,6 +19,7 @@ class NewsViewController: UIViewController {
         view.backgroundColor = .systemGray4
         setupViews()
         newsTable.dataSource = self
+        newsTable.delegate = self
         newsTable.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         setupConstraints()
     }
@@ -52,6 +53,14 @@ extension NewsViewController: UITableViewDataSource {
         cell.textLabel?.text = articleTitle
         cell.backgroundColor = .clear
         return cell
+    }
+}
+
+extension NewsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let news = presenter.news
+        let index = indexPath.item
+        presenter.tapOnTableCell(navVC: self.navigationController!, news: news, index: index)
     }
 }
 
