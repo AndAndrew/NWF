@@ -39,7 +39,7 @@ class WeatherForecastPresenter: WeatherForecastViewPresenterProtocol {
         router?.showDetailWeatherForecast(navigationController: navVC, weatherForecast: weatherForecast, index: index)
     }
     func getWeatherForecast() {
-        networkService.getData(fromURLString: "https://api.openweathermap.org/data/2.5/forecast?id=499099&appid=10e947c470cd64d82b9e40cb86162e8f") { [weak self] (result: Result<WeatherForecast?, Error>) in
+        networkService.getData(fromURLString: "http://api.openweathermap.org/data/2.5/forecast?id=499099&appid=10e947c470cd64d82b9e40cb86162e8f") { [weak self] (result: Result<WeatherForecast?, Error>) in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 switch result {

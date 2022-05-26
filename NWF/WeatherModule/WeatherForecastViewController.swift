@@ -17,6 +17,7 @@ class WeatherForecastViewController: UIViewController {
     var cityLabel: UILabel!
     var temperatureLabel: UILabel!
     var weatherImageView: UIImageView!
+    var weatherDescriptionLabel: UILabel!
     var anotherDayForecastCollection: UICollectionView!
     var labelsStack: UIStackView!
     var feelsLikeStack: TwoLabelStack!
@@ -26,6 +27,7 @@ class WeatherForecastViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        anotherDayWeatherForecast = []
         view.backgroundColor = .systemGray4
         tabBarController?.tabBar.tintColor = .systemRed
         setupViews()
@@ -68,6 +70,17 @@ class WeatherForecastViewController: UIViewController {
         weatherImageView.isHighlighted = true
         weatherImageView.tintColor = .systemGray2
         view.addSubview(weatherImageView)
+        
+        weatherDescriptionLabel = UILabel()
+        weatherDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        weatherDescriptionLabel.highlightedTextColor = .systemGray2
+        weatherDescriptionLabel.isHighlighted = true
+        weatherDescriptionLabel.font = UIFont(name: "Rockwell", size: 25)
+        weatherDescriptionLabel.minimumScaleFactor = 0.3
+        weatherDescriptionLabel.adjustsFontSizeToFitWidth = true
+        weatherDescriptionLabel.textAlignment = .center
+        weatherDescriptionLabel.contentMode = .center
+        view.addSubview(weatherDescriptionLabel)
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -113,16 +126,22 @@ class WeatherForecastViewController: UIViewController {
             weatherImageView.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor),
             weatherImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             weatherImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            weatherImageView.heightAnchor.constraint(equalToConstant: thirdOfViewHeight),
+            weatherImageView.heightAnchor.constraint(equalToConstant: (thirdOfViewHeight * 3) / 4),
             
-            anotherDayForecastCollection.topAnchor.constraint(equalTo: weatherImageView.bottomAnchor),
+            weatherDescriptionLabel.topAnchor.constraint(equalTo: weatherImageView.bottomAnchor),
+            weatherDescriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            weatherDescriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            weatherDescriptionLabel.heightAnchor.constraint(equalToConstant: thirdOfViewHeight / 4),
+            
+            anotherDayForecastCollection.topAnchor.constraint(equalTo: weatherDescriptionLabel.bottomAnchor),
             anotherDayForecastCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             anotherDayForecastCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             anotherDayForecastCollection.heightAnchor.constraint(equalToConstant: thirdOfViewHeight / 2),
             
+            labelsStack.topAnchor.constraint(equalTo: anotherDayForecastCollection.bottomAnchor),
             labelsStack.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             labelsStack.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            labelsStack.topAnchor.constraint(equalTo: anotherDayForecastCollection.bottomAnchor),
+            labelsStack.heightAnchor.constraint(equalToConstant: thirdOfViewHeight / 2),
             labelsStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
@@ -136,7 +155,7 @@ extension WeatherForecastViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! WeatherForecastCollectionViewCell
         cell.dateLabel.text = anotherDayWeatherForecast[indexPath.item].0
-        cell.temperatureLabel.text = "\(anotherDayWeatherForecast[indexPath.item].1)"
+        cell.temperatureLabel.text = "\(anotherDayWeatherForecast[indexPath.item].1)ºC"
         return cell
     }
 }
@@ -182,6 +201,9 @@ extension WeatherForecastViewController: WeatherForecastViewProtocol {
             guard let data = try? Data(contentsOf: url) else { return }
             weatherImageView.image = UIImage(data: data)
         }
+        
+        weatherDescriptionLabel.text = weatherForecast.list[0].weather[0].description
+        weatherDescriptionLabel.isHighlighted = false
         
         getAnotherDayWeatherForecast(weatherForecast: weatherForecast)
         

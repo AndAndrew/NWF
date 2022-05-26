@@ -14,6 +14,7 @@ class DetailWeatherForecastViewController: UIViewController {
     var cityLabel: UILabel!
     var temperatureLabel: UILabel!
     var weatherImageView: UIImageView!
+    var weatherDescriptionLabel: UILabel!
     var labelsStack: UIStackView!
     var feelsLikeStack: TwoLabelStack!
     var pressureStack: TwoLabelStack!
@@ -61,6 +62,17 @@ class DetailWeatherForecastViewController: UIViewController {
         weatherImageView.tintColor = .systemGray2
         view.addSubview(weatherImageView)
         
+        weatherDescriptionLabel = UILabel()
+        weatherDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        weatherDescriptionLabel.highlightedTextColor = .systemGray2
+        weatherDescriptionLabel.isHighlighted = true
+        weatherDescriptionLabel.font = UIFont(name: "Rockwell", size: 25)
+        weatherDescriptionLabel.minimumScaleFactor = 0.3
+        weatherDescriptionLabel.adjustsFontSizeToFitWidth = true
+        weatherDescriptionLabel.textAlignment = .center
+        weatherDescriptionLabel.contentMode = .center
+        view.addSubview(weatherDescriptionLabel)
+        
         feelsLikeStack = TwoLabelStack()
         feelsLikeStack.titleLabel.text = "Feels like"
         
@@ -98,10 +110,16 @@ class DetailWeatherForecastViewController: UIViewController {
             weatherImageView.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor),
             weatherImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             weatherImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            weatherImageView.heightAnchor.constraint(equalToConstant: (thirdOfViewHeight * 3) / 4),
             
+            weatherDescriptionLabel.topAnchor.constraint(equalTo: weatherImageView.bottomAnchor),
+            weatherDescriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            weatherDescriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            weatherDescriptionLabel.heightAnchor.constraint(equalToConstant: thirdOfViewHeight / 4),
+            
+            labelsStack.topAnchor.constraint(equalTo: weatherDescriptionLabel.bottomAnchor),
             labelsStack.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             labelsStack.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            labelsStack.topAnchor.constraint(equalTo: weatherImageView.bottomAnchor),
             labelsStack.heightAnchor.constraint(equalToConstant: thirdOfViewHeight / 2),
             labelsStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
@@ -124,6 +142,9 @@ extension DetailWeatherForecastViewController: DetailWeatherForecastViewProtocol
             guard let data = try? Data(contentsOf: url) else { return }
             weatherImageView.image = UIImage(data: data)
         }
+        
+        weatherDescriptionLabel.text = weatherForecast.list[index].weather[0].description
+        weatherDescriptionLabel.isHighlighted = false
         
         feelsLikeStack.contentLabel.text = "\(Int(round((main.feels_like) - 273.15)))ºC"
         humidityStack.contentLabel.text = "\(main.humidity)%"
