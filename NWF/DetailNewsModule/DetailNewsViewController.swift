@@ -11,6 +11,7 @@ class DetailNewsViewController: UIViewController {
     
     var presenter: DetailNewsViewPresenterProtocol!
     
+    var newsImage: UIImageView!
     var newsTextView: UITextView!
 
     override func viewDidLoad() {
@@ -24,6 +25,11 @@ class DetailNewsViewController: UIViewController {
     
     private func setupViews() {
         
+        newsImage = UIImageView()
+        newsImage.translatesAutoresizingMaskIntoConstraints = false
+        newsImage.contentMode = .scaleAspectFit
+        view.addSubview(newsImage)
+        
         newsTextView = UITextView()
         newsTextView.backgroundColor = .clear
         newsTextView.translatesAutoresizingMaskIntoConstraints = false
@@ -34,8 +40,12 @@ class DetailNewsViewController: UIViewController {
     private func setupConstrainst() {
         
         NSLayoutConstraint.activate([
+            newsImage.topAnchor.constraint(equalTo: view.topAnchor),
+            newsImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            newsImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            newsImage.heightAnchor.constraint(equalToConstant: view.frame.height / 2),
             
-            newsTextView.topAnchor.constraint(equalTo: view.topAnchor),
+            newsTextView.topAnchor.constraint(equalTo: newsImage.bottomAnchor),
             newsTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             newsTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             newsTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -47,6 +57,11 @@ extension DetailNewsViewController: DetailNewsViewProtocol {
     func setNews(news: News?, index: Int) {
         guard let news = news else { return }
         
+        guard let urlToImage = news.articles[index].urlToImage else { return }
+        if let url = URL(string: urlToImage) {
+            guard let data = try? Data(contentsOf: url) else { return }
+            newsImage.image = UIImage(data: data)
+        }
         newsTextView.text = news.articles[index].content
     }
 }
