@@ -12,6 +12,7 @@ class DetailNewsViewController: UIViewController {
     var presenter: DetailNewsViewPresenterProtocol!
     
     var newsImage: UIImageView!
+    var titleLabel: UILabel!
     var newsTextView: UITextView!
 
     override func viewDidLoad() {
@@ -30,22 +31,35 @@ class DetailNewsViewController: UIViewController {
         newsImage.contentMode = .scaleAspectFit
         view.addSubview(newsImage)
         
+        titleLabel = UILabel()
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.font = UIFont(name: "Rockwell", size: 25)
+        titleLabel.sizeToFit()
+        titleLabel.numberOfLines = 0
+        titleLabel.textAlignment = .left
+        view.addSubview(titleLabel)
+        
         newsTextView = UITextView()
         newsTextView.backgroundColor = .clear
         newsTextView.translatesAutoresizingMaskIntoConstraints = false
-        newsTextView.font = UIFont(name: "Rockwell", size: 17)
+        newsTextView.font = UIFont(name: "Rockwell", size: 20)
         view.addSubview(newsTextView)
     }
     
     private func setupConstrainst() {
+        let thirdOfViewHeight = (view.safeAreaLayoutGuide.layoutFrame.size.height - (tabBarController?.tabBar.frame.size.height ?? 0) - (navigationController?.navigationBar.frame.size.height ?? 0)) / 3
         
         NSLayoutConstraint.activate([
             newsImage.topAnchor.constraint(equalTo: view.topAnchor),
             newsImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             newsImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            newsImage.heightAnchor.constraint(equalToConstant: view.frame.height / 2),
+            newsImage.heightAnchor.constraint(equalToConstant: thirdOfViewHeight),
             
-            newsTextView.topAnchor.constraint(equalTo: newsImage.bottomAnchor),
+            titleLabel.topAnchor.constraint(equalTo: newsImage.bottomAnchor, constant: 20),
+            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            newsTextView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
             newsTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             newsTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             newsTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -55,13 +69,14 @@ class DetailNewsViewController: UIViewController {
 
 extension DetailNewsViewController: DetailNewsViewProtocol {
     func setNews(news: News?, index: Int) {
-        guard let news = news else { return }
+        guard let article = news?.articles[index] else { return }
         
-        guard let urlToImage = news.articles[index].urlToImage else { return }
+        guard let urlToImage = article.urlToImage else { return }
         if let url = URL(string: urlToImage) {
             guard let data = try? Data(contentsOf: url) else { return }
             newsImage.image = UIImage(data: data)
         }
-        newsTextView.text = news.articles[index].content
+        titleLabel.text = article.title
+        newsTextView.text = article.content
     }
 }
