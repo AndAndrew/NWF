@@ -14,6 +14,10 @@ class DetailNewsViewController: UIViewController {
     var newsImage: UIImageView!
     var titleLabel: UILabel!
     var newsTextView: UITextView!
+    var labelsStack: UIStackView!
+    var sourceStack: TwoLabelStack!
+    var authorStack: TwoLabelStack!
+    var publishedAtStack: TwoLabelStack!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +37,7 @@ class DetailNewsViewController: UIViewController {
         
         titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.font = UIFont(name: "Rockwell", size: 25)
+        titleLabel.font = UIFont(name: "Rockwell", size: 30)
         titleLabel.sizeToFit()
         titleLabel.numberOfLines = 0
         titleLabel.textAlignment = .left
@@ -44,6 +48,31 @@ class DetailNewsViewController: UIViewController {
         newsTextView.translatesAutoresizingMaskIntoConstraints = false
         newsTextView.font = UIFont(name: "Rockwell", size: 20)
         view.addSubview(newsTextView)
+        
+        sourceStack = TwoLabelStack()
+        sourceStack.titleLabel.text = "Source:"
+        sourceStack.titleLabel.textAlignment = .left
+        sourceStack.contentLabel.textAlignment = .left
+        
+        authorStack = TwoLabelStack()
+        authorStack.titleLabel.text = "Author:"
+        authorStack.titleLabel.textAlignment = .left
+        authorStack.contentLabel.textAlignment = .left
+        
+        publishedAtStack = TwoLabelStack()
+        publishedAtStack.titleLabel.text = "Published at:"
+        publishedAtStack.titleLabel.textAlignment = .left
+        publishedAtStack.contentLabel.textAlignment = .left
+        
+        labelsStack = UIStackView()
+        labelsStack.translatesAutoresizingMaskIntoConstraints = false
+        labelsStack.distribution = .fillEqually
+        labelsStack.axis = .vertical
+        labelsStack.spacing = 5
+        labelsStack.addArrangedSubview(sourceStack)
+        labelsStack.addArrangedSubview(authorStack)
+        labelsStack.addArrangedSubview(publishedAtStack)
+        view.addSubview(labelsStack)
     }
     
     private func setupConstrainst() {
@@ -62,7 +91,12 @@ class DetailNewsViewController: UIViewController {
             newsTextView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
             newsTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             newsTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            newsTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            newsTextView.heightAnchor.constraint(equalToConstant: thirdOfViewHeight / 2),
+            
+            labelsStack.topAnchor.constraint(equalTo: newsTextView.bottomAnchor, constant: 20),
+            labelsStack.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            labelsStack.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            labelsStack.heightAnchor.constraint(equalToConstant: thirdOfViewHeight / 2)
         ])
     }
 }
@@ -80,5 +114,8 @@ extension DetailNewsViewController: DetailNewsViewProtocol {
         }
         titleLabel.text = article.title
         newsTextView.text = article.content
+        sourceStack.contentLabel.text = article.source.name
+        authorStack.contentLabel.text = article.author
+        publishedAtStack.contentLabel.text = article.publishedAt
     }
 }
