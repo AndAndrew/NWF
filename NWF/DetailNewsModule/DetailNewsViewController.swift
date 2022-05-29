@@ -71,10 +71,12 @@ extension DetailNewsViewController: DetailNewsViewProtocol {
     func setNews(news: News?, index: Int) {
         guard let article = news?.articles[index] else { return }
         
-        guard let urlToImage = article.urlToImage else { return }
-        if let url = URL(string: urlToImage) {
-            guard let data = try? Data(contentsOf: url) else { return }
-            newsImage.image = UIImage(data: data)
+        DispatchQueue.main.async { [self] in
+            guard let urlToImage = article.urlToImage else { return }
+            if let url = URL(string: urlToImage) {
+                guard let data = try? Data(contentsOf: url) else { return }
+                self.newsImage.image = UIImage(data: data)
+            }
         }
         titleLabel.text = article.title
         newsTextView.text = article.content
