@@ -127,6 +127,12 @@ extension DetailNewsViewController: DetailNewsViewProtocol {
         linkButton.setTitle(article.url, for: .normal)
         sourceStack.contentLabel.text = article.source.name
         authorStack.contentLabel.text = article.author
-        publishedAtStack.contentLabel.text = article.publishedAt
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        let labelDateFormatter = DateFormatter()
+        labelDateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        let date = dateFormatter.date(from: article.publishedAt)
+        publishedAtStack.contentLabel.text = labelDateFormatter.string(from: date!)
     }
 }
