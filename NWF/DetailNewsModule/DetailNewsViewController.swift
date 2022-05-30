@@ -15,6 +15,7 @@ class DetailNewsViewController: UIViewController {
     var titleLabel: UILabel!
     var newsTextView: UITextView!
     var labelsStack: UIStackView!
+    var linkButton: UIButton!
     var sourceStack: TwoLabelStack!
     var authorStack: TwoLabelStack!
     var publishedAtStack: TwoLabelStack!
@@ -48,6 +49,11 @@ class DetailNewsViewController: UIViewController {
         newsTextView.translatesAutoresizingMaskIntoConstraints = false
         newsTextView.font = UIFont(name: "Rockwell", size: 20)
         view.addSubview(newsTextView)
+        
+        linkButton = UIButton(type: .system)
+        linkButton.translatesAutoresizingMaskIntoConstraints = false
+        linkButton.setTitleColor(.black, for: .normal)
+        view.addSubview(linkButton)
         
         sourceStack = TwoLabelStack()
         sourceStack.titleLabel.text = "Source:"
@@ -93,7 +99,11 @@ class DetailNewsViewController: UIViewController {
             newsTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             newsTextView.heightAnchor.constraint(equalToConstant: thirdOfViewHeight / 2),
             
-            labelsStack.topAnchor.constraint(equalTo: newsTextView.bottomAnchor, constant: 20),
+            linkButton.topAnchor.constraint(equalTo: newsTextView.bottomAnchor, constant: 20),
+            linkButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            linkButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            labelsStack.topAnchor.constraint(equalTo: linkButton.bottomAnchor, constant: 20),
             labelsStack.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             labelsStack.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             labelsStack.heightAnchor.constraint(equalToConstant: thirdOfViewHeight / 2)
@@ -114,6 +124,7 @@ extension DetailNewsViewController: DetailNewsViewProtocol {
         }
         titleLabel.text = article.title
         newsTextView.text = article.content
+        linkButton.setTitle(article.url, for: .normal)
         sourceStack.contentLabel.text = article.source.name
         authorStack.contentLabel.text = article.author
         publishedAtStack.contentLabel.text = article.publishedAt
