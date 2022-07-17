@@ -65,11 +65,93 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7F7AAFB32833782900FF5AEE /* DetailWeatherForecastModule */ = {
+		7F2F4BD62884386300660C6F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7FBB59B3281BBCB000004410 /* NewsViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7F2F4BD72884386D00660C6F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7FBB59C5281BC85500004410 /* News.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7F2F4BD82884387D00660C6F /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				7FBB59C3281BC6C800004410 /* NewsPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		7F2F4BD92884389500660C6F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7FC75865283FABB90072E791 /* DetailNewsViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7F2F4BDA2884389E00660C6F /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				7FC75868283FAC080072E791 /* DetailNewsPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		7F2F4BDB288438B300660C6F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7FBB59CE281FF98B00004410 /* WeatherForecastViewController.swift */,
+				7F7AAFAD282E792100FF5AEE /* WeatherForecastCollectionViewCell.swift */,
+				7F7AAFB628364CC700FF5AEE /* TwoLabelStack.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7F2F4BDC288438BD00660C6F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7FBB59D02820003B00004410 /* WeatherForecast.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7F2F4BDD288438C800660C6F /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				7FBB59D32820014E00004410 /* WeatherForecastPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		7F2F4BDE288438D900660C6F /* View */ = {
 			isa = PBXGroup;
 			children = (
 				7F7AAFAF283119A200FF5AEE /* DetailWeatherForecastViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7F2F4BDF288438E000660C6F /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
 				7F7AAFB1283119C200FF5AEE /* DetailWeatherForecastPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		7F7AAFB32833782900FF5AEE /* DetailWeatherForecastModule */ = {
+			isa = PBXGroup;
+			children = (
+				7F2F4BDE288438D900660C6F /* View */,
+				7F2F4BDF288438E000660C6F /* Presenter */,
 			);
 			path = DetailWeatherForecastModule;
 			sourceTree = "<group>";
@@ -113,9 +195,9 @@
 		7FBB59C7281C0E5D00004410 /* NewsModule */ = {
 			isa = PBXGroup;
 			children = (
-				7FBB59B3281BBCB000004410 /* NewsViewController.swift */,
-				7FBB59C5281BC85500004410 /* News.swift */,
-				7FBB59C3281BC6C800004410 /* NewsPresenter.swift */,
+				7F2F4BD62884386300660C6F /* View */,
+				7F2F4BD72884386D00660C6F /* Model */,
+				7F2F4BD82884387D00660C6F /* Presenter */,
 			);
 			path = NewsModule;
 			sourceTree = "<group>";
@@ -123,11 +205,9 @@
 		7FBB59D2282000D300004410 /* WeatherModule */ = {
 			isa = PBXGroup;
 			children = (
-				7FBB59CE281FF98B00004410 /* WeatherForecastViewController.swift */,
-				7F7AAFAD282E792100FF5AEE /* WeatherForecastCollectionViewCell.swift */,
-				7F7AAFB628364CC700FF5AEE /* TwoLabelStack.swift */,
-				7FBB59D02820003B00004410 /* WeatherForecast.swift */,
-				7FBB59D32820014E00004410 /* WeatherForecastPresenter.swift */,
+				7F2F4BDB288438B300660C6F /* View */,
+				7F2F4BDC288438BD00660C6F /* Model */,
+				7F2F4BDD288438C800660C6F /* Presenter */,
 			);
 			path = WeatherModule;
 			sourceTree = "<group>";
@@ -135,8 +215,8 @@
 		7FC75867283FABD00072E791 /* DetailNewsModule */ = {
 			isa = PBXGroup;
 			children = (
-				7FC75865283FABB90072E791 /* DetailNewsViewController.swift */,
-				7FC75868283FAC080072E791 /* DetailNewsPresenter.swift */,
+				7F2F4BD92884389500660C6F /* View */,
+				7F2F4BDA2884389E00660C6F /* Presenter */,
 			);
 			path = DetailNewsModule;
 			sourceTree = "<group>";
