@@ -35,7 +35,7 @@ class NewsPresenter: NewsViewPresenterProtocol {
         router?.showDetailNews(navigationController: navVC, news: news, index: index)
     }
     func getNews() {
-        networkService.getData(fromURLString: "https://newsapi.org/v2/everything?domains=wsj.com&apiKey=f72d06e2351a4a72bf54a30cce6aba82") { [weak self] (result: Result<News?, Error>) in
+        networkService.getData(fromURLString: "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=f72d06e2351a4a72bf54a30cce6aba82") { [weak self] (result: Result<News?, Error>) in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 switch result {

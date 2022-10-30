@@ -16,11 +16,11 @@ class NewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .systemGray4
+        view.backgroundColor = .systemGray6
         setupViews()
         newsTable.dataSource = self
         newsTable.delegate = self
-        newsTable.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        newsTable.register(NewsTableViewCell.self, forCellReuseIdentifier: cellId)
         setupConstraints()
     }
     
@@ -48,10 +48,35 @@ extension NewsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        let articleTitle = presenter.news?.articles[indexPath.row].title
-        cell.textLabel?.text = articleTitle
-        cell.backgroundColor = .clear
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! NewsTableViewCell
+        let newsImage = UIImage(systemName: "doc.text.image")
+        cell.newsImageView.image = newsImage
+        cell.newsImageView.contentMode = .scaleAspectFill
+        
+        guard let article = presenter.news?.articles[indexPath.row] else { return cell }
+        
+        DispatchQueue.global().async {
+            guard let urlToImage = article.urlToImage else { return }
+            if let url = URL(string: urlToImage) {
+                guard let data = try? Data(contentsOf: url) else { return }
+                DispatchQueue.main.async {
+                    cell.newsImageView.image = UIImage(data: data)
+                }
+            }
+        }
+        cell.articleLabel.text = article.title
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        let labelDateFormatter = DateFormatter()
+        labelDateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        let date = dateFormatter.date(from: article.publishedAt)
+        if Calendar.current.isDateInToday(date!) {
+            cell.dateLabel.text = "today"
+        } else {
+            cell.dateLabel.text = labelDateFormatter.string(from: date!)
+        }
+        
         return cell
     }
 }

@@ -13,7 +13,7 @@ class DetailNewsViewController: UIViewController {
     
     var newsImage: UIImageView!
     var titleLabel: UILabel!
-    var newsTextView: UITextView!
+    var newsTextLabel: UILabel!
     var labelsStack: UIStackView!
     var linkButton: UIButton!
     var sourceStack: TwoLabelStack!
@@ -23,7 +23,7 @@ class DetailNewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .systemGray4
+        view.backgroundColor = .systemGray6
         setupViews()
         presenter.setNews()
         setupConstrainst()
@@ -33,7 +33,8 @@ class DetailNewsViewController: UIViewController {
         
         newsImage = UIImageView()
         newsImage.translatesAutoresizingMaskIntoConstraints = false
-        newsImage.contentMode = .scaleAspectFit
+        newsImage.contentMode = .scaleAspectFill
+        newsImage.clipsToBounds = true
         view.addSubview(newsImage)
         
         titleLabel = UILabel()
@@ -44,11 +45,13 @@ class DetailNewsViewController: UIViewController {
         titleLabel.textAlignment = .left
         view.addSubview(titleLabel)
         
-        newsTextView = UITextView()
-        newsTextView.backgroundColor = .clear
-        newsTextView.translatesAutoresizingMaskIntoConstraints = false
-        newsTextView.font = UIFont(name: "Rockwell", size: 20)
-        view.addSubview(newsTextView)
+        newsTextLabel = UILabel()
+        newsTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        newsTextLabel.font = UIFont(name: "Rockwell", size: 20)
+        newsTextLabel.sizeToFit()
+        newsTextLabel.numberOfLines = 0
+        newsTextLabel.textAlignment = .left
+        view.addSubview(newsTextLabel)
         
         linkButton = UIButton(type: .system)
         linkButton.translatesAutoresizingMaskIntoConstraints = false
@@ -91,21 +94,22 @@ class DetailNewsViewController: UIViewController {
             newsImage.heightAnchor.constraint(equalToConstant: thirdOfViewHeight),
             
             titleLabel.topAnchor.constraint(equalTo: newsImage.bottomAnchor, constant: 20),
-            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            titleLabel.heightAnchor.constraint(equalToConstant: 34),
             
-            newsTextView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
-            newsTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            newsTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            newsTextView.heightAnchor.constraint(equalToConstant: thirdOfViewHeight / 2),
+            newsTextLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+            newsTextLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            newsTextLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            newsTextLabel.heightAnchor.constraint(equalToConstant: thirdOfViewHeight / 2),
             
-            linkButton.topAnchor.constraint(equalTo: newsTextView.bottomAnchor, constant: 20),
-            linkButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            linkButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            linkButton.topAnchor.constraint(equalTo: newsTextLabel.bottomAnchor, constant: 20),
+            linkButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            linkButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             
             labelsStack.topAnchor.constraint(equalTo: linkButton.bottomAnchor, constant: 20),
-            labelsStack.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            labelsStack.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            labelsStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            labelsStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             labelsStack.heightAnchor.constraint(equalToConstant: thirdOfViewHeight / 2)
         ])
     }
@@ -123,7 +127,7 @@ extension DetailNewsViewController: DetailNewsViewProtocol {
             }
         }
         titleLabel.text = article.title
-        newsTextView.text = article.content
+        newsTextLabel.text = article.content
         linkButton.setTitle(article.url, for: .normal)
         sourceStack.contentLabel.text = article.source.name
         authorStack.contentLabel.text = article.author
