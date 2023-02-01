@@ -14,6 +14,7 @@ class TwoLabelStack: UIStackView {
         title.translatesAutoresizingMaskIntoConstraints = false
         title.font = UIFont.systemFont(ofSize: 20)
         title.minimumScaleFactor = 0.3
+        title.textColor = .systemGray6
         title.adjustsFontSizeToFitWidth = true
         title.textAlignment = .center
         title.contentMode = .center
@@ -26,6 +27,7 @@ class TwoLabelStack: UIStackView {
         content.translatesAutoresizingMaskIntoConstraints = false
         content.font = UIFont.systemFont(ofSize: 20)
         content.minimumScaleFactor = 0.3
+        content.textColor = .systemGray6
         content.adjustsFontSizeToFitWidth = true
         content.textAlignment = .center
         content.contentMode = .center

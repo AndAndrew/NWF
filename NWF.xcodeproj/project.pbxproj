@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F2F4BE128843C5100660C6F /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2F4BE028843C5100660C6F /* NewsTableViewCell.swift */; };
 		7F7AAFAE282E792100FF5AEE /* WeatherForecastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7AAFAD282E792100FF5AEE /* WeatherForecastCollectionViewCell.swift */; };
 		7F7AAFB0283119A200FF5AEE /* DetailWeatherForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7AAFAF283119A200FF5AEE /* DetailWeatherForecastViewController.swift */; };
 		7F7AAFB2283119C200FF5AEE /* DetailWeatherForecastPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7AAFB1283119C200FF5AEE /* DetailWeatherForecastPresenter.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7F2F4BE028843C5100660C6F /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		7F7AAFAD282E792100FF5AEE /* WeatherForecastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastCollectionViewCell.swift; sourceTree = "<group>"; };
 		7F7AAFAF283119A200FF5AEE /* DetailWeatherForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWeatherForecastViewController.swift; sourceTree = "<group>"; };
 		7F7AAFB1283119C200FF5AEE /* DetailWeatherForecastPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWeatherForecastPresenter.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				7FBB59B3281BBCB000004410 /* NewsViewController.swift */,
+				7F2F4BE028843C5100660C6F /* NewsTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				7F7AAFB2283119C200FF5AEE /* DetailWeatherForecastPresenter.swift in Sources */,
 				7FBB59D12820003B00004410 /* WeatherForecast.swift in Sources */,
 				7F7AAFB0283119A200FF5AEE /* DetailWeatherForecastViewController.swift in Sources */,
+				7F2F4BE128843C5100660C6F /* NewsTableViewCell.swift in Sources */,
 				7FBB59C6281BC85500004410 /* News.swift in Sources */,
 				7FBB59B4281BBCB000004410 /* NewsViewController.swift in Sources */,
 				7FBB59B0281BBCB000004410 /* AppDelegate.swift in Sources */,

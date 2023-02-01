@@ -28,8 +28,8 @@ class WeatherForecastViewController: UIViewController {
         super.viewDidLoad()
         
         anotherDayWeatherForecast = []
-        view.backgroundColor = .systemGray4
-        tabBarController?.tabBar.tintColor = .systemRed
+        view.backgroundColor = .darkGray
+        tabBarController?.tabBar.tintColor = .systemGray5
         setupViews()
         anotherDayForecastCollection.dataSource = self
         anotherDayForecastCollection.delegate = self
@@ -43,7 +43,7 @@ class WeatherForecastViewController: UIViewController {
         cityLabel = UILabel()
         cityLabel.translatesAutoresizingMaskIntoConstraints = false
         cityLabel.text = "City"
-        cityLabel.highlightedTextColor = .systemGray2
+        cityLabel.textColor = .systemGray6
         cityLabel.isHighlighted = true
         cityLabel.font = UIFont(name: "Rockwell", size: 65)
         cityLabel.minimumScaleFactor = 0.4
@@ -54,7 +54,7 @@ class WeatherForecastViewController: UIViewController {
         
         temperatureLabel = UILabel()
         temperatureLabel.translatesAutoresizingMaskIntoConstraints = false
-        temperatureLabel.highlightedTextColor = .systemGray2
+        temperatureLabel.textColor = .systemGray6
         temperatureLabel.isHighlighted = true
         temperatureLabel.font = UIFont(name: "Rockwell", size: 80)
         temperatureLabel.minimumScaleFactor = 0.4
@@ -73,7 +73,7 @@ class WeatherForecastViewController: UIViewController {
         
         weatherDescriptionLabel = UILabel()
         weatherDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        weatherDescriptionLabel.highlightedTextColor = .systemGray2
+        weatherDescriptionLabel.textColor = .systemGray6
         weatherDescriptionLabel.isHighlighted = true
         weatherDescriptionLabel.font = UIFont(name: "Rockwell", size: 25)
         weatherDescriptionLabel.minimumScaleFactor = 0.3
@@ -86,7 +86,7 @@ class WeatherForecastViewController: UIViewController {
         layout.scrollDirection = .horizontal
         anotherDayForecastCollection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         anotherDayForecastCollection.translatesAutoresizingMaskIntoConstraints = false
-        anotherDayForecastCollection.backgroundColor = .clear
+        anotherDayForecastCollection.backgroundColor = .systemGray2
         view.addSubview(anotherDayForecastCollection)
         
         feelsLikeStack = TwoLabelStack()
@@ -217,7 +217,7 @@ extension WeatherForecastViewController: WeatherForecastViewProtocol {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let anotherDayDateFormatter = DateFormatter()
-        anotherDayDateFormatter.dateFormat = "dd.MM HH:mm"
+        anotherDayDateFormatter.dateFormat = "dd.MM  HH:mm"
         let today = dateFormatter.date(from: weatherForecast.list[0].dt_txt)!
         let calendar = Calendar(identifier: .gregorian)
         let tomorrow = calendar.startOfDay(for: calendar.date(byAdding: .day, value: 1, to: today)!)

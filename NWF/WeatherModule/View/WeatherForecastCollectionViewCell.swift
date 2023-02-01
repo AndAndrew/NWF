@@ -29,6 +29,7 @@ class WeatherForecastCollectionViewCell: UICollectionViewCell {
     let temperatureLabel: UILabel = {
         let temperature = UILabel()
         temperature.translatesAutoresizingMaskIntoConstraints = false
+        temperature.font = UIFont(name: "Helvetica Neue", size: 35)
         temperature.textAlignment = .center
         
         return temperature
@@ -39,7 +40,7 @@ class WeatherForecastCollectionViewCell: UICollectionViewCell {
         
         contentView.clipsToBounds = true
         contentView.layer.cornerRadius = 7
-        contentView.backgroundColor = .systemGray5
+        contentView.backgroundColor = .clear
         
         contentView.addSubview(stackview)
         

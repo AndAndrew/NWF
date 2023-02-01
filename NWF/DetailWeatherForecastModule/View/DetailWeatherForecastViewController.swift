@@ -23,7 +23,7 @@ class DetailWeatherForecastViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .systemGray4
+        view.backgroundColor = .darkGray
         setupViews()
         presenter.setWeatherForecast()
         setupConstrainst()
@@ -34,7 +34,7 @@ class DetailWeatherForecastViewController: UIViewController {
         cityLabel = UILabel()
         cityLabel.translatesAutoresizingMaskIntoConstraints = false
         cityLabel.text = "City"
-        cityLabel.highlightedTextColor = .systemGray2
+        cityLabel.textColor = .systemGray6
         cityLabel.isHighlighted = true
         cityLabel.font = UIFont(name: "Rockwell", size: 65)
         cityLabel.minimumScaleFactor = 0.4
@@ -45,7 +45,7 @@ class DetailWeatherForecastViewController: UIViewController {
         
         temperatureLabel = UILabel()
         temperatureLabel.translatesAutoresizingMaskIntoConstraints = false
-        temperatureLabel.highlightedTextColor = .systemGray2
+        temperatureLabel.textColor = .systemGray6
         temperatureLabel.isHighlighted = true
         temperatureLabel.font = UIFont(name: "Rockwell", size: 80)
         temperatureLabel.minimumScaleFactor = 0.4
@@ -64,7 +64,7 @@ class DetailWeatherForecastViewController: UIViewController {
         
         weatherDescriptionLabel = UILabel()
         weatherDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        weatherDescriptionLabel.highlightedTextColor = .systemGray2
+        weatherDescriptionLabel.textColor = .systemGray6
         weatherDescriptionLabel.isHighlighted = true
         weatherDescriptionLabel.font = UIFont(name: "Rockwell", size: 25)
         weatherDescriptionLabel.minimumScaleFactor = 0.3

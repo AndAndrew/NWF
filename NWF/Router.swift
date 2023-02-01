@@ -31,12 +31,18 @@ class Router: RouterProtocol {
     }
     
     func initialViewController() {
+        UITabBar.appearance().backgroundImage = UIImage()
+        UITabBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        UINavigationBar.appearance().shadowImage = UIImage()
         if let tabBarController = tabBarController {
             guard let newsViewController = assemblyBuilder?.createNewsModule(router: self),
                   let weatherForecastViewController = assemblyBuilder?.createWeatherForecastModule(router: self) else { return }
             let navigationNewsVC = generateNavigationController(rootViewController: newsViewController, title: "News", image: UIImage(systemName: "newspaper.fill") ?? UIImage())
             let navigationWeatherForecastVC = generateNavigationController(rootViewController: weatherForecastViewController, title: "Weather", image: UIImage(systemName: "sun.min.fill") ?? UIImage())
             tabBarController.viewControllers = [navigationNewsVC, navigationWeatherForecastVC]
+            let tabBarColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.6)
+            tabBarController.tabBar.backgroundColor = tabBarColor
         }
     }
     
